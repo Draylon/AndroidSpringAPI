@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SpringComp</string>
+    <string name="welcome_msg">Bem-vindo ao Client Android da API.</string>
+    <string name="welcomeToast">Iniciando aplicativo</string>
+</resources>
