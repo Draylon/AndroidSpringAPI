@@ -1,11 +1,14 @@
 package com.example.springcomp.api.dtos;
 
+import com.example.springcomp.enums.UserTypeEnum;
+
 public class CreateUserDTO {
     private String name;
     private String phone;
     private String email;
     private String pword;
     private String address;
+    private UserTypeEnum userType;
 
     public String getName() {
         return name;
@@ -49,6 +52,15 @@ public class CreateUserDTO {
 
     public CreateUserDTO setAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public UserTypeEnum getUserType() {
+        return userType;
+    }
+
+    public CreateUserDTO setUserType(UserTypeEnum userType) {
+        this.userType = userType;
         return this;
     }
 }

@@ -1,55 +1,67 @@
 package com.example.springcomp.socketService;
 
+import com.example.springcomp.api.dtos.CreateUserDTO;
+import com.example.springcomp.api.dtos.UserLoginDTO;
+import com.example.springcomp.enums.UserTypeEnum;
+import com.google.gson.Gson;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
 
-public class ApiLinkAgent {
-
+public class ApiDataLink {
 
     private static File file;
-
-    private static String username;
-    private static String password;
-    private static Boolean logged = false;
-    private static Map<String,String> dataMap = new HashMap<>();
+    private static LocalDataRepo localData;
 
     static{
-        file = new File("data.txt");
-        Map<String,String> l = new HashMap<>();
-        Scanner sc;
-        try {
-            sc = new Scanner(file);
-            Boolean hasline=false;
-            while (sc.hasNextLine()){
-                hasline=true;
-                String[] s = sc.nextLine().split("=:=");
-                l.put(s[0],s[1]);
-            }
-            if(hasline){
-                username=l.get("username");
-                password=l.get("password");
-                logged=Boolean.parseBoolean(l.get("logged"));
-            }
-        } catch (FileNotFoundException e) { }
-
-        System.out.println(ApiLinkAgent.username + " " + ApiLinkAgent.password + " " + ApiLinkAgent.logged);
+        localData = LocalDataRepo.readLocal("data.txt");
     }
 
     public static void setUserData(String u,String pw){
-        setUsername(u);
-        setPassword(pw);
-
+        localData.setEmail(u);
+        localData.setPassword(pw);
+        LocalDataRepo.saveLocal(localData,"data.txt");
+    }
+    public static void setUserData(String name, String phone, String email, String pword, String address, UserTypeEnum userType){
+        localData.setAddress(address);
+        localData.setEmail(email);
+        localData.setName(name);
+        localData.setPhone(phone);
+        localData.setPassword(pword);
+        localData.setUserType(userType);
+        LocalDataRepo.saveLocal(localData,"data.txt");
     }
 
-    public static void makeLogin(){
-        String link = ApiServerLink.getServerIP()+":"+ApiServerLink.setServerPort()+ApiServerLink.MAIN_PATH + ApiServerLink.USER_QUERY_EMAIL;
-        ServerCommunication.makePost();
+
+    public static HashMap<String, String> attemptLogin() {
+        String link = "http://" + ApiServerLink.getServerIP() + ":" + ApiServerLink.getServerPort() + ApiServerLink.MAIN_PATH + ApiServerLink.USER_LINK + ApiServerLink.USER_LOGIN;
+        Gson g = new Gson();
+        HashMap<String,String> serverResponse = ServerCommunication.makePost(link, g.toJson(new UserLoginDTO().setEmail(localData.getEmail()).setPassword(localData.getPassword())));
+        return serverResponse;
+    }
+
+    public static HashMap<String, String> attemptSignup(){
+        String link = "http://"+ApiServerLink.getServerIP()+":"+ApiServerLink.getServerPort()+ApiServerLink.MAIN_PATH + ApiServerLink.USER_LINK;
+        Gson g = new Gson();
+        HashMap<String,String> serverResponse = ServerCommunication.makePost(link, g.toJson(new CreateUserDTO().setEmail(localData.getEmail())
+                .setPword(localData.getPassword()).setAddress(localData.getAddress()).setName(localData.getName()).setPhone(localData.getPhone()).setUserType(localData.getUserType())));
+        return serverResponse;
     }
 
 
+    public static File getFile() {
+        return file;
+    }
 
+    public static void setFile(File file) {
+        ApiDataLink.file = file;
+    }
+
+    public static LocalDataRepo getLocalData() {
+        return localData;
+    }
+
+    public static void setLocalData(LocalDataRepo localData) {
+        ApiDataLink.localData = localData;
+    }
 }

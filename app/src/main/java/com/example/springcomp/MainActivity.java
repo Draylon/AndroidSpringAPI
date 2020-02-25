@@ -9,17 +9,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.springcomp.UI.login.LoginSectionPageAdapter;
 import com.example.springcomp.UI.login.LoginTabFragView;
 import com.example.springcomp.UI.login.SignupTabFragView;
-import com.example.springcomp.socketService.LoginAgent;
+import com.example.springcomp.socketService.ApiDataLink;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    LoginAgent login;
+    ApiDataLink login;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        login = new LoginAgent();
+        login = new ApiDataLink();
         setContentView(R.layout.activity_main);
 
         Button welcomeBT = findViewById(R.id.welcomeButton);
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         welcomeBT.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                if(LoginAgent.getLogged()){
+                if(ApiDataLink.getLocalData().getLogged()){
                     Toast.makeText(MainActivity.this,"welcomeToast",Toast.LENGTH_LONG).show();
                     setContentView(R.layout.home_window);
                 }else{

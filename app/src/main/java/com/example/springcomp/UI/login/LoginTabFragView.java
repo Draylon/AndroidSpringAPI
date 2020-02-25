@@ -11,7 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.example.springcomp.R;
-import com.example.springcomp.socketService.LoginAgent;
+import com.example.springcomp.api.dtos.UserLoginResponseDTO;
+import com.example.springcomp.socketService.ApiDataLink;
+import com.example.springcomp.socketService.LocalDataRepo;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 public class LoginTabFragView extends Fragment {
 
@@ -27,11 +32,19 @@ public class LoginTabFragView extends Fragment {
             public void onClick(View v) {
                 //Toast.makeText(getActivity(),"LoginFrag selected",Toast.LENGTH_LONG).show();
                 TextView username = view.findViewById(R.id.loginUsername);
-                TextView password = view.findViewById(R.id.loginUsername);
+                TextView password = view.findViewById(R.id.loginPassword);
                 String unString = (String) username.getText();
                 String pwString = (String) password.getText();
-                LoginAgent.setUserData(unString,pwString);
-                LoginAgent.attemptLogin();
+                ApiDataLink.setUserData(unString,pwString);
+                HashMap loginStatus = ApiDataLink.attemptLogin();
+                UserLoginResponseDTO loginResponse = new Gson().fromJson(loginStatus.get("response"), UserLoginResponseDTO.class);
+                if(loginResponse.getValidCredentials()) {
+                    Toast.makeText(getActivity(), "Logged In successfully",Toast.LENGTH_LONG);
+                    ApiDataLink.getLocalData().setHash(loginResponse.getHash());
+                }else {
+                    Toast.makeText(getActivity(),"Invalid Credentials!",Toast.LENGTH_LONG);
+                }
+
             }
         });
         return view;

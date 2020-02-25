@@ -18,6 +18,34 @@
             android:ems="10"
             android:id="@+id/signupPassword" android:textAlignment="gravity" android:hint="password"
             android:paddingTop="10dp" android:paddingBottom="10dp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/signupPassword2" android:textAlignment="gravity" android:hint="password"
+            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/signupPassword3" android:textAlignment="gravity" android:hint="password"
+            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/signupPassword4" android:textAlignment="gravity" android:hint="password"
+            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/signupPassword5" android:textAlignment="gravity" android:hint="password"
+            android:paddingTop="10dp" android:paddingBottom="10dp"/>
     <Button
             android:text="Sign Up"
             android:layout_width="wrap_content"
