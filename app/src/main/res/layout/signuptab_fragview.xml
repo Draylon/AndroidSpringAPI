@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent" android:padding="30dp" android:gravity="center">
+              android:layout_height="match_parent" android:padding="30dp" android:gravity="center"
+              android:background="#CFD8DC">
 
     <EditText
             android:layout_width="match_parent"
@@ -10,44 +11,58 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/signupUsername" android:textAlignment="gravity" android:hapticFeedbackEnabled="true"
-            android:hint="e-mail" android:paddingBottom="10dp"/>
+            android:hint="e-mail" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/signupPassword" android:textAlignment="gravity" android:hint="password"
-            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/signupPassword2" android:textAlignment="gravity" android:hint="password"
-            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+            android:id="@+id/signupEmail" android:textAlignment="gravity" android:hint="E-Mail"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:ems="10"
-            android:id="@+id/signupPassword3" android:textAlignment="gravity" android:hint="password"
-            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+            android:id="@+id/signupAdress" android:textAlignment="gravity" android:hint="Address"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="number|text"
             android:ems="10"
-            android:id="@+id/signupPassword4" android:textAlignment="gravity" android:hint="password"
-            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+            android:id="@+id/signupPhone" android:textAlignment="gravity" android:hint="Phone"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:ems="10"
-            android:id="@+id/signupPassword5" android:textAlignment="gravity" android:hint="password"
-            android:paddingTop="10dp" android:paddingBottom="10dp"/>
+            android:id="@+id/signupName" android:textAlignment="gravity" android:hint="Name"
+            android:paddingTop="10dp" android:paddingBottom="10dp" android:textColor="#FFFFFF"/>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:orientation="horizontal" android:paddingTop="10dp"
+            android:paddingBottom="10dp" android:checkedButton="@id/signupRadio1" android:id="@+id/signupUserType">
+        <RadioButton
+                android:text="Usuário"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/signupRadio1"/>
+        <RadioButton
+                android:text="Vendedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/signupRadio2"/>
+    </RadioGroup>
     <Button
             android:text="Sign Up"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/signupButton" android:layout_marginTop="10dp"/>
+            android:layout_height="wrap_content" android:id="@+id/signupButton" android:layout_marginTop="10dp"
+            android:background="#757575"/>
 </LinearLayout>

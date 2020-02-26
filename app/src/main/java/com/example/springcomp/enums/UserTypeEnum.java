@@ -7,25 +7,25 @@ public enum  UserTypeEnum {
     CLIENT(0),
     VENDOR(1);
 
-    private UserTypeEnum selectedUserType;
-    private Integer selectedInt;
+    private int selectedInt;
+    private String selectedString;
     private static Map list = new HashMap();
+    private static Map strList = new HashMap();
     static{
         for (UserTypeEnum userType : UserTypeEnum.values()){
-            list.put(userType.selectedUserType,userType);
+            list.put(userType.selectedInt,userType);
+            strList.put(userType.toString(),userType);
         }
     }
     UserTypeEnum(int i) {
         this.selectedInt=i;
-        setSelectedUserType();
     }
     public Integer getSelectedInt() {
         return selectedInt;
     }
     public UserTypeEnum getSelectedUserType() {
-        return selectedUserType;
+        return (UserTypeEnum) list.get(selectedInt);
     }
-    public void setSelectedUserType() {
-        this.selectedUserType = (UserTypeEnum) list.get(selectedInt);
-    }
+
+    public static String getString(UserTypeEnum o){ return (String) strList.get(o); }
 }

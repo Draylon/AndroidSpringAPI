@@ -1,10 +1,12 @@
 package com.example.springcomp.socketService;
 
 import android.util.Base64;
+import com.example.springcomp.MainActivity;
 import com.example.springcomp.enums.UserTypeEnum;
 import com.google.gson.Gson;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class LocalDataRepo {
@@ -22,23 +24,38 @@ public class LocalDataRepo {
     private UserTypeEnum userType;
 
 
-    public static LocalDataRepo readLocal(String filename) {
+    public static LocalDataRepo readLocal(File cacheDir,String filedir) {
+        LocalDataRepo localData = new LocalDataRepo();
         try {
-            String sc = new Scanner(new File(filename)).useDelimiter("\\Z").next();
+            FileInputStream fi = new FileInputStream(cacheDir.getAbsolutePath()+"/"+filedir);
+            String sc = new Scanner(fi).useDelimiter("\\Z").next();
             Gson g = new Gson();
-            LocalDataRepo localData = g.fromJson(sc, LocalDataRepo.class);
-            return localData;
-        } catch (FileNotFoundException e) {}
-        return null;
+            if(g.fromJson(sc, LocalDataRepo.class) != null)
+                localData = g.fromJson(sc,LocalDataRepo.class);
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+        return localData;
     }
 
-    public static Boolean saveLocal(LocalDataRepo localData,String filename){
+    public static Boolean saveLocal(LocalDataRepo localData,File cacheDir,String filedir){
         try {
-            FileWriter fw = new FileWriter(filename);
+            FileWriter fw = new FileWriter(cacheDir.getAbsolutePath()+"/"+filedir);
             fw.write(new Gson().toJson(localData));
             fw.close();
             return true;
-        } catch (IOException e) {return false;}
+        } catch (IOException e) {
+            System.err.println(e);return false;}
+    }
+
+    public static Boolean createLocal(File cacheDir,String filedir){
+        try {
+            FileWriter fw = new FileWriter(cacheDir.getAbsolutePath()+"/"+filedir);
+            fw.write("");
+            fw.close();
+            return true;
+        } catch (IOException e) {
+            System.err.println(e);return false;}
     }
 
     public String getHash() {
@@ -139,5 +156,22 @@ public class LocalDataRepo {
     public LocalDataRepo setUserType(UserTypeEnum userType) {
         this.userType = userType;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "LocalDataRepo{" +
+                "serverIP='" + serverIP + '\'' +
+                ", serverPort=" + serverPort +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", logged=" + logged +
+                ", hash=" + Arrays.toString(hash) +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", userType=" + userType +
+                '}';
     }
 }
