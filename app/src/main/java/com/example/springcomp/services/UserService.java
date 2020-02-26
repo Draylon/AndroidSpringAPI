@@ -2,7 +2,6 @@ package com.example.springcomp.services;
 
 import com.example.springcomp.api.dtos.CreateUserDTO;
 import com.example.springcomp.api.dtos.UserResponseDTO;
-import com.example.springcomp.api.mappers.UserMapper;
 import com.example.springcomp.entities.User;
 import com.example.springcomp.exceptions.AlreadyExistsException;
 import com.example.springcomp.exceptions.NotFoundException;

@@ -21,4 +21,12 @@ public class UserLoginResponseDTO {
         this.validCredentials = validCredentials;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "UserLoginResponseDTO{" +
+                "hash='" + hash + '\'' +
+                ", validCredentials=" + validCredentials +
+                '}';
+    }
 }

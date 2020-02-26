@@ -4,8 +4,6 @@ import com.example.springcomp.api.dtos.CreateProductDTO;
 import com.example.springcomp.api.dtos.ProductResponseDTO;
 import com.example.springcomp.api.dtos.RestaurantResponseDTO;
 import com.example.springcomp.api.dtos.UpdateProductDTO;
-import com.example.springcomp.api.mappers.ProductMapper;
-import com.example.springcomp.api.mappers.RestaurantMapper;
 import com.example.springcomp.entities.Product;
 import com.example.springcomp.entities.Restaurant;
 

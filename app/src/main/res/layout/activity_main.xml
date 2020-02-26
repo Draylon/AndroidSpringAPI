@@ -26,7 +26,7 @@
                 android:ems="10"
                 android:id="@+id/serverIPText" android:layout_weight="1" android:hint="Server IP"
                 android:layout_marginRight="15dp" android:backgroundTint="#FFFFFF" android:backgroundTintMode="add"
-                android:textColor="#00FFFFFF" android:textColorHint="#707070"/>
+                android:textColor="#FFFFFF" android:textColorHint="#707070"/>
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

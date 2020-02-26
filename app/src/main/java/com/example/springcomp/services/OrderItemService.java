@@ -2,8 +2,6 @@ package com.example.springcomp.services;
 
 import com.example.springcomp.api.dtos.CreateOrderItemDTO;
 import com.example.springcomp.api.dtos.OrderItemDTO;
-import com.example.springcomp.api.mappers.OrderItemMapper;
-import com.example.springcomp.api.mappers.ProductMapper;
 import com.example.springcomp.entities.Order;
 import com.example.springcomp.entities.OrderItem;
 import com.example.springcomp.exceptions.NotFoundException;
